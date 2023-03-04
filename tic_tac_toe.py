@@ -43,3 +43,48 @@ class Grid():
         for row in self.row_list:
             print(row)
             print(self.row_line)
+
+# This method is used to mark squares chosen by the player and to change the turn
+    def make_choice(self, player_name, player_mark, player_chosen_squares):
+        choice = input(player_name + ", it is your turn: ").upper()
+        while choice not in self.list_of_choices:
+            if choice in ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]:
+                choice = input("This square has been marked! ").upper()
+            
+            else:
+                choice = input("This square does not exist! ").upper()
+
+        if choice in self.list_of_choices:
+            self.list_of_choices.remove(str(choice))
+            player_chosen_squares.append(choice)
+            if choice == "A1":
+                self.a1=str(player_mark)
+
+            elif choice == "A2":
+                self.a2=str(player_mark)
+      
+            elif choice == "A3":
+                self.a3=str(player_mark)
+      
+            elif choice == "B1":
+                self.b1=str(player_mark)
+      
+            elif choice == "B2":
+                self.b2=str(player_mark)
+      
+            elif choice == "B3":
+                self.b3=str(player_mark)
+            
+            elif choice == "C1":
+                self.c1=str(player_mark)
+      
+            elif choice == "C2":
+                self.c2=str(player_mark)
+      
+            elif choice == "C3":
+                self.c3=str(player_mark)
+            
+            self.active = self.active*(-1)  
+        
+            
+        self.print_grid() 
