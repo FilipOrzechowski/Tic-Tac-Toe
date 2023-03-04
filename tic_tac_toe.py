@@ -95,3 +95,28 @@ class Grid():
             self.p1_chosen_squares = []
             self.p2_chosen_squares = []
     
+# This method checks if squares marked by player fit to the one of combinations that provide a victory    
+    def check_result(self, player_name, player_chosen_squares):
+        counter = 0
+        win_combination_counter = 0
+        for combination in self.win_combinations:
+            for chosen_square in player_chosen_squares:
+                counter += 1
+
+                if chosen_square in combination:
+                    win_combination_counter += 1
+
+                if counter == len(player_chosen_squares) and win_combination_counter < 3:
+                    counter = 0
+                    win_combination_counter = 0
+            
+            if win_combination_counter == 3 and counter <= len(player_chosen_squares):
+                print(player_name + " you are a winner!!!")
+                if player_name == self.p1_name:
+                    self.p1_wins += 1
+
+                else:
+                    self.p2_wins += 1
+
+                self.game_ended = True
+                self.repeat_game()   
