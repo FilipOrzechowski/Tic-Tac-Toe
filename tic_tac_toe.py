@@ -120,3 +120,20 @@ class Grid():
 
                 self.game_ended = True
                 self.repeat_game()   
+
+#This is a turn-changing and detecting a draw method    
+    def game(self):
+        while self.list_of_choices != [] and self.game_ended == False:
+            if self.active == 1:
+                self.make_choice(self.p1_name, self.p1_mark, self.p1_chosen_squares)
+                self.check_result(self.p1_name, self.p1_chosen_squares)
+            
+            else:
+               self.make_choice(self.p2_name, self.p2_mark, self.p2_chosen_squares)
+               self.check_result(self.p2_name, self.p2_chosen_squares)
+        
+        if self.list_of_choices == []:
+            print("It's a draw!!!")
+            self.draw += 1
+            self.game_ended = True
+            self.repeat_game()
