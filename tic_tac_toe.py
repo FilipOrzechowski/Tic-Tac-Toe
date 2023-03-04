@@ -137,3 +137,44 @@ class Grid():
             self.draw += 1
             self.game_ended = True
             self.repeat_game()
+
+#This metod allows to choose between playing the next round or ending the game
+    def repeat_game(self):
+        if self.game_ended == True:
+            print("Result of the game:\nRounds played = {rounds}\n{one_name}: Wins = {one_win}\n{two_name}: Wins = {two_win}\nDraws = {draw}".format(rounds = self.round, one_name=self.p1_name, two_name=self.p2_name, one_win = self.p1_wins, two_win = self.p2_wins, draw = self.draw))
+            choice_repeat = input("Do you want to play again? If yes press \"Y\", if no press \"N\" ").upper()
+        
+        while choice_repeat != "Y" and choice_repeat != "N":
+            choice_repeat = input("Wrong letter, try again. ").upper()
+
+        if choice_repeat == "Y":
+            self.clean_chosen_squares()
+            self.game_ended = False
+            self.round += 1
+
+            if self.round % 2 == 0:
+                self.active == -1
+            
+            self.list_of_choices = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+            self.a1 = " " 
+            self.a2 = " " 
+            self.a3 = " " 
+            self.b1 = " " 
+            self.b2 = " " 
+            self.b3 = " " 
+            self.c1 = " " 
+            self.c2 = " " 
+            self.c3 = " "
+            self.print_grid()
+            self.game()
+
+        elif choice_repeat == "N":
+            if self.p1_wins > self.p2_wins:
+                print("{} is a winner of the game!!!".format(self.p1_name))
+
+            elif self.p1_wins < self.p2_wins:
+                print("{} is a winner of the game!!!".format(self.p2_name))
+
+            elif self.p1_wins == self.p2_wins:
+                print("The game ended with a draw!!!")
+
