@@ -88,3 +88,10 @@ class Grid():
         
             
         self.print_grid() 
+
+# This method cleans list of squares chosen by player in order to start new round    
+    def clean_chosen_squares(self):
+        if self.game_ended == True:
+            self.p1_chosen_squares = []
+            self.p2_chosen_squares = []
+    
