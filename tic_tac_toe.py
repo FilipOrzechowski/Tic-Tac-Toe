@@ -178,3 +178,32 @@ class Grid():
             elif self.p1_wins == self.p2_wins:
                 print("The game ended with a draw!!!")
 
+player_one_name = input("Welcome to the world of Tic-tac-toe! Please enter a name for player one and hit enter. ")
+player_one_mark = input(str(player_one_name) + " please choose your mark. Do you prefer \"X\" or \"O\"? ").upper()
+while player_one_mark != "X" and player_one_mark != "O":
+    player_one_mark = input("Try again, such mark does not exist. ").upper()
+
+player_two_name = input("Hello player two! Please type your name. ")
+if player_one_mark == "X":
+    player_two_mark = "O"
+
+else:
+    player_two_mark = "X"
+
+grid = Grid(player_one_name, player_two_name, player_one_mark, player_two_mark)
+
+input(str(player_two_name) + ", your mark is \"" +str(player_two_mark) + "\". Press enter to continue...")
+rules = input("If you need to know the rules of the game before starting press \"Y\". If you want to start the game without explanation of the rules press \"N\"").upper()
+while rules != "Y" and rules != "N":
+    rules = input("Wrong letter, try again. ").upper()
+
+if rules == "Y":
+    input("Tic-tac-toe is game for two players who take turns marking the spaces in a three-by-three grid with X or O. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner. Press enter to continue...")
+    print("In the first row there are column numbers at the top, while in the leftmost column there are row letters. To choose a square you need to type a row letter and number of column. For example:\n- to choose square in grid center type \"B2\",\n- to choose square at the top left corner type \"A1\".")
+    grid.print_grid()
+    input("Press enter to start the game...")
+
+if rules == "N":
+    grid.print_grid()
+
+grid.game()
